@@ -5,7 +5,6 @@ a lightweight ARP sponge.
 ## requirements
 
 + ruby 1.9.3+
-+ packetfu 1.1.10+
 + asetus 0.0.7+
 + logger 1.2.8+
 
