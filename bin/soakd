@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require 'soak'
+require 'asetus'
+
+def help
+  puts "usage: soakd\n\n"
+  exit 1
+end
+
+begin
+  Cfg  = Asetus.cfg name: 'soak'
+  Process.daemon if not Cfg.debug
+  sponge = Soak::Core.new
+end

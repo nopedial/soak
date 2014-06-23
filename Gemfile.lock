@@ -1,0 +1,20 @@
+PATH
+  remote: .
+  specs:
+    soak (0.0.1)
+      asetus (>= 0.0.7)
+      logger (>= 1.2.8)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    asetus (0.0.7)
+      slop
+    logger (1.2.8)
+    slop (3.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  soak!
