@@ -3,7 +3,7 @@ module Soak
  require 'socket'
  require 'ipaddr'
  require 'thread'
- require 'soak/log'
  require 'soak/core'
+ require 'soak/lookup'
  require 'soak/packet'
 end

@@ -1,37 +1,25 @@
 module Soak
-  class Core
 
-    def initialize
-      @sock = Socket.new Socket::PF_PACKET, Socket::SOCK_RAW, 0x03_00
-      @rx_queue = Queue.new
-      listen
-    end
+  # import user configuration
+  require 'asetus'
+  Cfg  		= Asetus.cfg name: 'soak'
+  Process.daemon if not Cfg.debug
 
-    def listen
-      enqueue = Thread.new do
-        while true do
-	  r, w, e = IO.select([@sock], nil, nil)
-          if r[0]
-            data = @sock.recvfrom_nonblock(1500).first
-	    @rx_queue << data
-          end
-        end
-      end
-      worker = Thread.new do
-	while true do
-          begin
-            data = @rx_queue.pop
-            if data[0..13].unpack('nnnnnnn')[6].to_s(16).to_i == 806 # process arp packets only
-	      pkt = Packet.new data
-              pkt.sponge
-            end
-          rescue => e
-	    Log.warn e if Cfg.debug
-	  end
-        end
-      end
-      worker.join
-    end
+  # logging
+  require 'logger'
+  target = STDOUT
+  Log = Logger.new target
 
-  end
+  # constants
+  ETH_P_ALL     =  0x03_00
+  SIOCGIFINDEX  =  0x89_33
+  PF_PACKET     =  17
+  AF_PACKET     =  PF_PACKET
+  IFREQ		=  [ Cfg.interface.dup ].pack 'a32'
+  RawSocket     =  Socket.open Socket::PF_PACKET, Socket::SOCK_RAW, ETH_P_ALL
+
+  # setup sending device
+  RawSocket.ioctl(SIOCGIFINDEX, IFREQ)
+  RawSocket.bind [AF_PACKET].pack('s') + [ETH_P_ALL].pack('n') + IFREQ[16..20] + ("\x00" * 12)
+
 end
