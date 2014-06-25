@@ -1,14 +1,29 @@
 module Soak
 
-  # import user configuration
-  require 'asetus'
-  Cfg  		= Asetus.cfg name: 'soak'
-  Process.daemon if not Cfg.debug
-
-  # logging
   require 'logger'
   target = STDOUT
   Log = Logger.new target
+
+  # import user configuration
+  require 'asetus'
+  if File.exists? '/etc/soak/config'
+    Cfg  			= Asetus.cfg name: 'soak'
+  else
+    CFG = Asetus.new :name=>'soak', :load=>false
+    CFG.default.interface 	= 'eth0'
+    CFG.default.local_mac 	= 'ff:ff:ff:ff:ff:ff'
+    CFG.default.sponge 		= []
+    CFG.default.debug 		= false
+    CFG.load
+    if CFG.create
+      CFG.save
+      puts "+ edit: '/root/.config/soak/config'"
+      exit 0
+    else
+      Cfg = CFG.cfg
+    end
+  end
+  Process.daemon if not Cfg.debug
 
   # constants
   ETH_P_ALL     =  0x03_00

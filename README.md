@@ -21,14 +21,14 @@ a lightweight ARP sponge.
 
 ## files
 
-+ configuration file: /etc/soak/config
+the configuration file is generated during the first run at: /root/.config/soak/config
 
 ## configuration example
 
-	{ "interface" : "ethX",
-	  "local_mac" : "xx:xx:xx:xx:xx:xx",
-	  "sponge" : [ '192.168.0.100', '192.168.0.44', '192.168.0.137' ],
-	  "debug" : true }
-
+	---
+	interface: eth0
+	local_mac: ff:ff:ff:ff:ff:ff
+	sponge: [ '192.168.0.44', '192.168.0.100' ]
+	debug: true
 
 
