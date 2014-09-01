@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 'soak'
-  s.version           = '0.0.3'
+  s.version           = '0.1.0'
   s.platform          = Gem::Platform::RUBY
   s.authors           = [ 'Samer Abdel-Hafez' ]
   s.email             = %w( sam@arahant.net )
@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
   s.require_path      = 'lib'
 
   s.required_ruby_version = '>= 1.9.3'
-  s.add_dependency 'asetus', '>= 0.0.7'
+  s.add_dependency 'asetus', '>= 0.1.2'
   s.add_dependency 'logger', '>= 1.2.8'
 end

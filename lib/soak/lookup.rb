@@ -47,11 +47,11 @@ module Soak
               end
             end
             @src_ip = IPAddr.new(pkt[8], Socket::AF_INET)
-            Log.debug "matching arp request - target address:#{@dst_ip.to_s} - sender info:#{@src_ip} @ #{@src_mac}" if Cfg.debug
+            Log.debug [ 'matching arp request - target address:', @dst_ip.to_s, '- sender info:', @src_ip, '@', @src_mac ].join(' ') if Cfg.debug
 	    @src_mac = @src_mac.join.scan(/../).join ':'
             pkt = Packet.new @dst_ip, @src_ip, @src_mac, @data[12..19]
           else
-            Log.debug "ip not in sponge database - #{@dst_ip.to_s} .. ignoring .." if Cfg.debug
+            Log.debug [ 'address is not in the database -' @dst_ip.to_s, '.. ignoring ..' ].join(' ') if Cfg.debug
           end
       end
     end

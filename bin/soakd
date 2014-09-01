@@ -3,7 +3,7 @@
 require 'soak'
 
 def help
-  puts "usage: soakd\n\n"
+  puts 'usage: soakd'
   exit 1
 end
 

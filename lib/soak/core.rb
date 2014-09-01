@@ -17,7 +17,7 @@ module Soak
     CFG.load
     if CFG.create
       CFG.save
-      puts "+ edit: '/root/.config/soak/config'"
+      puts '+ base configuration built at: /root/.config/soak/config'
       exit 0
     else
       Cfg = CFG.cfg

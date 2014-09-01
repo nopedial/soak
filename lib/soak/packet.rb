@@ -28,7 +28,7 @@ module Soak
     def inject
       begin
         RawSocket.send @packet, 0
-        Log.debug "arp packet injected - sponge address: #{Cfg.local_mac}" if Cfg.debug
+        Log.debug [ 'arp packet injected - sponge address:', Cfg.local_mac ].join(' ') if Cfg.debug
       rescue => e
 	Log.warn e
       end
