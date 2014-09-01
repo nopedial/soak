@@ -1,4 +1,4 @@
-## SOAK
+## SOAK [![Gem Version](https://badge.fury.io/rb/soak.svg)](http://badge.fury.io/rb/soak)
 
 lightweight ARP sponge.
 
