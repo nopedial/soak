@@ -51,7 +51,7 @@ module Soak
 	    @src_mac = @src_mac.join.scan(/../).join ':'
             pkt = Packet.new @dst_ip, @src_ip, @src_mac, @data[12..19]
           else
-            Log.debug [ 'address is not in the database -' @dst_ip.to_s, '.. ignoring ..' ].join(' ') if Cfg.debug
+            Log.debug [ 'address is not in the database -', @dst_ip.to_s, '.. ignoring ..' ].join(' ') if Cfg.debug
           end
       end
     end
