@@ -1,17 +1,18 @@
 ## SOAK
 
-a lightweight ARP sponge.
+lightweight ARP sponge.
 
 ## requirements
 
-+ ruby 1.9.3+
-+ asetus 0.0.7+
-+ logger 1.2.8+
++ ruby 1.9.3
++ asetus 0.1.2
++ logger 1.2.8
+
+soakd requires root privileges to run.
 
 # install
 
-	> gem build soak.gemspec
-	> gem install ./soak
+	> gem install soak
 	>
 
 ## usage
@@ -28,7 +29,8 @@ the configuration file is generated during the first run at: /root/.config/soak/
 	---
 	interface: eth0
 	local_mac: ff:ff:ff:ff:ff:ff
-	sponge: [ '192.168.0.44', '192.168.0.100' ]
+	sponge: [ '192.0.2.44', '192.0.2.101', '192.0.2.253' ]
 	debug: true
+
 
 
