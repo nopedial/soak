@@ -12,13 +12,17 @@ soakd requires root privileges to run.
 
 # install
 
+```
 	> gem install soak
 	>
+```
 
 ## usage
 
+```
 	> soakd
  	>
+```
 
 ## files
 
@@ -26,11 +30,11 @@ the configuration file is generated during the first run at: /root/.config/soak/
 
 ## configuration example
 
+```
 	---
 	interface: eth0
-	local_mac: ff:ff:ff:ff:ff:ff
-	sponge: [ '192.0.2.44', '192.0.2.101', '192.0.2.253' ]
+	sponge: [ '192.0.2.44+ff:ff:ff:ff:ff:ff', '192.0.2.45+ee:ee:ee:ee:ee:ee', ]
 	debug: true
-
+```
 
 

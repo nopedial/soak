@@ -1,7 +1,7 @@
 module Soak
 
   require 'logger'
-  target = STDOUT
+  target = '/root/.config/soak/log'
   Log = Logger.new target
 
   # import user configuration
@@ -11,8 +11,7 @@ module Soak
   else
     CFG = Asetus.new :name=>'soak', :load=>false
     CFG.default.interface 	= 'eth0'
-    CFG.default.local_mac 	= 'ff:ff:ff:ff:ff:ff'
-    CFG.default.sponge 		= []
+    CFG.default.sponge 		= [ '192.168.88.217+98:e0:d9:a0:3a:1' ]
     CFG.default.debug 		= false
     CFG.load
     if CFG.create
@@ -23,7 +22,7 @@ module Soak
       Cfg = CFG.cfg
     end
   end
-  Process.daemon if not Cfg.debug
+  Process.daemon
 
   # constants
   ETH_P_ALL     =  0x03_00
